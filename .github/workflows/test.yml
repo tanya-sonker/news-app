@@ -1,0 +1,16 @@
+name: Start app
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - with:
+        env: ${{ secrets.REACT_APP_NEWS_API_KEY }}
+    - uses: actions/checkout@v1
+    - name: Install Packages
+      run: npm install
+    - name: Start app
+      run: npm start
