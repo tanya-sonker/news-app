@@ -4,13 +4,20 @@ on:
     branches:
       - master
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - with:
-        env: ${{ secrets.REACT_APP_NEWS_API_KEY }}
-    - uses: actions/checkout@v1
-    - name: Install Packages
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: install packages
       run: npm install
-    - name: Start app
-      run: npm start
+    - name: build
+      run:
+        npm run-script build
+      env: 
+        REACT_APP_NEWS_API_KEY: ${{ secrets.REACT_APP_NEWS_API_KEY }}
+    - name: deploy
+      uses: JamesIves/github-pages-deploy-action@4.0.0
+      with:
+        BRANCH: gh-pages
+        FOLDER: dist
