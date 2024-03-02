@@ -4,16 +4,14 @@ on:
     branches:
       - master
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
-    - name: install packages
+    - uses: actions/checkout@v1
+    - name: Install Packages
       run: npm install
-    - name: build
-      run:
-        npm run-script build
+    - name: Start app
+      run: npm start
       env: 
         REACT_APP_NEWS_API_KEY: ${{ secrets.REACT_APP_NEWS_API_KEY }}
     - name: deploy
