@@ -12,10 +12,9 @@ jobs:
       run: npm install
     - name: Start app
       run: npm start
-      env: 
-        REACT_APP_NEWS_API_KEY: ${{ secrets.REACT_APP_NEWS_API_KEY }}
     - name: deploy
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
         BRANCH: gh-pages
         FOLDER: dist
+        REACT_APP_NEWS_API_KEY: ${{ secrets.REACT_APP_NEWS_API_KEY }}
