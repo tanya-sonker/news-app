@@ -1,20 +1,33 @@
-name: Start app
+name: CI
+
 on:
   push:
     branches:
       - master
+
 jobs:
-  deploy:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Install Packages
-      run: npm install
-    - name: Start app
-      run: npm start
-    - name: deploy
+
+    - name: 'Create env file'
+      run: |
+        touch .env
+        echo REACT_APP_NEWS_API_KEY=${{ secrets.REACT_APP_NEWS_API_KEY }} >> .env
+        cat .env
+    
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Build
+      run: |
+        npm install
+        npm run-script build
+
+    - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
         BRANCH: gh-pages
         FOLDER: dist
-        REACT_APP_NEWS_API_KEY: ${{ secrets.REACT_APP_NEWS_API_KEY }}
