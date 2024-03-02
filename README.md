@@ -5,7 +5,7 @@ to track apple's decisions on progressive web apps using news api by sourcing fr
 
 <ins>rationale</ins>
 
-apple is ending support for PWAs on iOS starting v17.4. before that decision was officially made, i was working on creating a PWA on iOS so i created this react app to keep track of the latest news.
+apple is ending support for PWAs on iOS starting v17.4 (eu only for now). before that decision was officially made, i was working on creating a PWA on iOS so i created this react app to keep track of whether this decision will be made across the board.
 
 ## notes
 - create a .env file with your [news api](https://newsapi.org/) key saved to
